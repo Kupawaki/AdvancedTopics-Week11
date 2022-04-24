@@ -11,6 +11,8 @@ import android.os.IBinder;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
+import java.util.Timer;
+
 public class ForegroundService extends Service
 {
     //onCreate is called only once, even if you start a service multiple times
@@ -30,6 +32,7 @@ public class ForegroundService extends Service
         PendingIntent pendingIntent = PendingIntent.getActivity(this,
                 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
+        int num = 0;
         Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
                 .setContentTitle("Example Service")
                 .setContentText(input)
@@ -38,7 +41,7 @@ public class ForegroundService extends Service
                 .build();
 
         startForeground(1, notification);
-
+        
         //You can stop a service if you are all done with your work
         //Do heavy work on a background thread
         //stopSelf();
